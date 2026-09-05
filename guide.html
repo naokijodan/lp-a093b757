@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>出品提案の説明書</title>
+<style>
+:root{
+  --bg:#F3F5F7; --surface:#FFFFFF; --ink:#1B2330; --muted:#5A6474;
+  --line:#E2E6EB; --accent:#D7263D; --indigo:#2B4C8C; --amber:#B26E0A;
+  --green:#2E7D5B; --purple:#7B4FA6; --tint:#EDF0F4;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#12161E; --surface:#1A202B; --ink:#E8EBF0; --muted:#98A2B3;
+    --line:#2A3140; --accent:#F0455C; --indigo:#8CA9E0; --amber:#E0A44B;
+    --green:#5CB48E; --purple:#B08BD8; --tint:#232A37;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12161E; --surface:#1A202B; --ink:#E8EBF0; --muted:#98A2B3;
+  --line:#2A3140; --accent:#F0455C; --indigo:#8CA9E0; --amber:#E0A44B;
+  --green:#5CB48E; --purple:#B08BD8; --tint:#232A37;
+}
+:root[data-theme="light"]{
+  --bg:#F3F5F7; --surface:#FFFFFF; --ink:#1B2330; --muted:#5A6474;
+  --line:#E2E6EB; --accent:#D7263D; --indigo:#2B4C8C; --amber:#B26E0A;
+  --green:#2E7D5B; --purple:#7B4FA6; --tint:#EDF0F4;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  font-size:14px; line-height:1.7; -webkit-font-smoothing:antialiased}
+a{color:var(--indigo)}
+.mast{background:var(--surface); border-bottom:1px solid var(--line)}
+.mast-in{max-width:920px; margin:0 auto; padding:14px 16px;
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 16px}
+.brand{font-size:22px; font-weight:800; letter-spacing:.02em}
+.brand b{color:var(--accent)}
+.backlink{margin-left:auto; font-size:12.5px; font-weight:700}
+.wrap{max-width:920px; margin:0 auto; padding:16px 16px 60px}
+.lead{color:var(--muted); font-size:13px; margin:4px 0 18px}
+.toc{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:22px; position:sticky; top:0;
+  background:var(--bg); padding:8px 0; z-index:5}
+.toc a{font-size:12px; font-weight:700; padding:5px 11px; border-radius:999px;
+  border:1px solid var(--line); background:var(--surface); color:var(--ink); text-decoration:none}
+.toc a:hover{border-color:var(--indigo); color:var(--indigo)}
+section.sec{margin-bottom:34px; scroll-margin-top:52px}
+h2{font-size:17px; margin:0 0 4px; padding-bottom:8px; border-bottom:2px solid var(--ink)}
+h2 .no{color:var(--accent); margin-right:6px}
+h3{font-size:14px; margin:18px 0 8px; color:var(--indigo)}
+p{margin:8px 0}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin:10px 0}
+.card h4{margin:0 0 6px; font-size:13.5px}
+.mermaid{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px; margin:10px 0}
+table{width:100%; border-collapse:collapse; font-size:12.5px; margin:8px 0}
+th,td{border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top}
+th{background:var(--tint); font-weight:700}
+td.num, th.num{text-align:right; font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto}
+.badge{display:inline-block; padding:2px 9px; border-radius:999px; font-size:11px; font-weight:800}
+.b-A{color:#fff; background:var(--accent)}
+.b-B{color:#fff; background:var(--indigo)}
+.b-C{color:var(--muted); border:1px solid var(--line); background:var(--surface)}
+.b-補充{color:#fff; background:var(--indigo)}
+.b-攻め{color:#fff; background:var(--accent)}
+.b-様子見{color:var(--muted); border:1px solid var(--line); background:var(--surface)}
+.b-縮小{color:#fff; background:#6B7280}
+.fact{font-size:12px; color:var(--muted); background:var(--tint); border-radius:6px; padding:8px 10px; margin-top:6px}
+.fact b{color:var(--ink)}
+.reason{font-size:12.5px; background:var(--tint); border-radius:6px; padding:8px 10px; margin-top:6px}
+.note-box{font-size:12.5px; color:var(--muted); background:var(--tint); border:1px solid var(--line);
+  border-radius:8px; padding:10px 12px}
+.warn{font-size:12.5px; background:var(--tint); border-left:3px solid var(--amber); padding:8px 12px; border-radius:0 6px 6px 0}
+.formula{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px;
+  background:var(--tint); border-radius:5px; padding:2px 7px; display:inline-block}
+dl.glossary{display:grid; grid-template-columns:1fr; gap:0}
+dl.glossary dt{font-weight:800; margin-top:10px}
+dl.glossary dd{margin:2px 0 0; color:var(--muted)}
+.linkbtn{display:inline-block; font-size:12px; font-weight:700; color:#fff; background:var(--indigo);
+  border-radius:5px; padding:5px 11px; margin:2px 4px 2px 0; text-decoration:none}
+.linkbtn.mercari{background:var(--amber)}
+footer{max-width:920px; margin:20px auto 0; padding:0 16px 30px; color:var(--muted); font-size:11.5px}
+</style>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true, theme:'neutral', securityLevel:'loose'});</script>
+<div class="mast"><div class="mast-in">
+  <div class="brand"><b>出品提案</b>の説明書</div>
+  <a class="backlink" href="index.html">← 公開ページ（出品提案／在庫判断）へ戻る</a>
+</div></div>
+<div class="wrap">
+<p class="lead">このページは、あなたの「出品提案」ツールが毎朝何をしていて、AIが何を根拠に判断しているかを、
+実際の数字を使って説明するものです。用語には必ず一言説明を付けています。</p>
+
+<div class="toc">
+  <a href="#flow">1. 全体の流れ</a>
+  <a href="#facts">2. 集めている事実</a>
+  <a href="#ai">3. AIの判断</a>
+  <a href="#feedback">4. あなたの判断の反映</a>
+  <a href="#links">5. リンクの意味</a>
+  <a href="#limits">6. 限界と注意</a>
+  <a href="#glossary">7. 用語集</a>
+</div>
+
+<section class="sec" id="flow">
+<h2><span class="no">1</span>一枚で分かる全体の流れ</h2>
+<p>毎朝、決まった順番で自動的に動きます。あなたがやることは、朝できたページを見て「採用」にチェックを
+入れることだけです。</p>
+<div class="mermaid">
+flowchart TD
+    W["07:00<br/>新商品ウォッチ<br/>(新商品を毎朝収集する別のツール)"] --> M["08:30<br/>このツール(出品提案)が動き出す"]
+    M --> S0["0. 出品中・売上を取得<br/>(eBayから読むだけ)"]
+    S0 --> S1["1. シリーズ分類<br/>(タイトルをシリーズにまとめる)"]
+    S1 --> S2["2. 判断ノートを更新<br/>(前日までのチェック結果を学習)"]
+    S2 --> S3["3. 出品提案を作る"]
+    S2 --> S4["4. 在庫の方針を判断"]
+    S3 --> S5["5. ページを作って公開"]
+    S4 --> S5
+    S5 --> D["Discordに通知が届く"]
+    D --> U["あなた<br/>ページを見て『採用』にチェック"]
+    U --> N["翌朝<br/>AIがチェック結果を読んで判断ノートを更新"]
+    N -.翌日の判断に反映される.-> S2
+
+</div>
+<p class="note-box">「新商品ウォッチ」は別のツールで、メルカリ等に出ている新商品情報を毎朝7時に集めています。
+このツール（出品提案）はその結果を読みに行くだけで、新商品ウォッチ側には何も書き込みません。</p>
+</section>
+
+<section class="sec" id="facts">
+<h2><span class="no">2</span>集めている事実（プログラムの仕事）</h2>
+<p>AIに判断させる前に、プログラムがまず「事実」だけを機械的に集めます。ここでは想像や推測は一切入りません。</p>
+
+<h3>自社の出品状況</h3>
+<p>eBayから「今出品中の商品」と「最近売れた商品」を読み取るだけです（読み取り専用。出品や値下げなど
+書き込みは一切行いません）。</p>
+<div class="tablewrap"><table><tbody>
+<tr><th>今出品中の件数（実データ）</th><td><b>7,677件</b></td></tr>
+<tr><th>直近60日で売れた件数（実データ）</th><td><b>320件</b>（点数の合計は404点。まとめ売りだと1件で複数点になります）</td></tr>
+<tr><th>データ取得時刻</th><td>2026-09-05T03:24:08.542611+00:00</td></tr>
+</tbody></table></div>
+
+<h3>シリーズ分類</h3>
+<p>「ポケモン のフィギュア」「ポケモン のカード」のように商品名は毎回バラバラなので、
+似た商品名をまとめて「シリーズ」という単位に分類しています。</p>
+<div class="tablewrap"><table><tbody>
+<tr><th>分類済みの商品名（タイトル）の総数</th><td><b>7,774件</b></td></tr>
+<tr><th>できあがったシリーズの数</th><td><b>1,135個</b></td></tr>
+</tbody></table></div>
+<h4 style="margin:10px 0 4px;font-size:12.5px;color:var(--muted)">件数が多い上位シリーズ（実データ）</h4>
+<div class="tablewrap"><table><thead><tr><th>シリーズ名</th><th class="num">商品名の件数</th></tr></thead>
+<tbody><tr><td>Pokemon</td><td class='num'>922</td></tr><tr><td>One Piece</td><td class='num'>534</td></tr><tr><td>Dragon Ball</td><td class='num'>478</td></tr><tr><td>Kinnikuman</td><td class='num'>199</td></tr><tr><td>Other</td><td class='num'>170</td></tr><tr><td>Sailor Moon</td><td class='num'>156</td></tr><tr><td>Marvel</td><td class='num'>123</td></tr><tr><td>Street Fighter</td><td class='num'>110</td></tr></tbody></table></div>
+
+<h3>eBayの需要指標</h3>
+<p>eBay内でそのキーワードがどれだけ出品されているか、日本のセラーがどれだけいるかを、
+<span class="formula">Browse API</span>（eBayの検索エンジンを読み取るだけの仕組み）で調べます。</p>
+<div class='fact'>実例：シリーズ名「Pokemon」でのeBay需要指標 — 出品数(total_all) <b>19,509,730件</b> ／ JP比率 <b>5.8%</b>（eBay全体の出品のうち日本のセラーが占める割合。低いほど日本人セラー同士の値下げ合戦になりにくい） ／ 中央値 <b>$9.72</b>（新品の実売価格の真ん中の値。極端な高値・安値に引っ張られにくい代表値）</div>
+
+<h3>派生指標（プログラムが計算して足す数字）</h3>
+<p>売れ数・在庫数から、プログラムが次の4つの数字を計算します。捏造ではなく、すべて実データからの単純な計算です。</p>
+<ul>
+<li><b>売れ数7日／30日／60日</b>：それぞれの日数の間に売れた件数（60日はまとめ売りを1件と数えた
+「レコード件数」、点数の合計は別に「点数60日」として持っています）。</li>
+<li><b>加速度（accel）</b> = <span class="formula">直近7日の1日あたり販売ペース ÷ 直近30日の1日あたり販売ペース</span>。
+1より大きいほど加速中、小さいほど失速中という意味です。</li>
+<li><b>在庫消化日数（stock_coverage_days）</b> = <span class="formula">在庫数 ÷ 直近30日の1日あたり販売ペース</span>。
+今のペースのまま売れ続けたとして、あと何日で在庫が尽きるかの目安です。</li>
+</ul>
+<div class="tablewrap"><table><thead><tr><th>シリーズ</th><th class='num'>売れ数7日</th><th class='num'>売れ数30日</th><th class='num'>売れ数60日<br>(件数)</th><th class='num'>点数60日</th><th class='num'>在庫数</th><th class='num'>加速度</th><th class='num'>在庫消化日数</th></tr></thead><tbody><tr><td>Palworld</td><td class='num'>0</td><td class='num'>4</td><td class='num'>42</td><td class='num'>106</td><td class='num'>1</td><td class='num'>0.00</td><td class='num'>7.5</td></tr><tr><td>Pokemon</td><td class='num'>7</td><td class='num'>29</td><td class='num'>49</td><td class='num'>49</td><td class='num'>911</td><td class='num'>1.03</td><td class='num'>942.4</td></tr><tr><td>Kinnikuman</td><td class='num'>1</td><td class='num'>7</td><td class='num'>12</td><td class='num'>12</td><td class='num'>191</td><td class='num'>0.61</td><td class='num'>818.7</td></tr><tr><td>Dragon Ball</td><td class='num'>4</td><td class='num'>11</td><td class='num'>15</td><td class='num'>15</td><td class='num'>478</td><td class='num'>1.56</td><td class='num'>1303.5</td></tr><tr><td>Heart Cocktail</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>4.29</td><td class='num'>30.0</td></tr></tbody></table></div>
+<p class="note-box">
+実例の読み方：Palworldは在庫が1点しかなく、上の表の在庫消化日数が示す通りこのままのペースだと約1週間で
+売り切れる計算になります。Dragon Ballは在庫が478点と多く、在庫消化日数が1000日を超えており、
+在庫が明らかに過多です。加速度が1を超えているシリーズ（例: Pokemon、Dragon Ball）は直近の売れ行きが
+上向いていることを、1未満のシリーズ（例: Kinnikuman）は失速していることを示します。
+（30日間の販売が0件のシリーズは分母がゼロになるため、加速度・在庫消化日数とも「算出不可」として
+表示され、無理に数字を作ることはしません。）
+</p>
+</section>
+
+<section class="sec" id="ai">
+<h2><span class="no">3</span>AIが判断していること（AIの仕事）</h2>
+
+<h3>在庫判断（在庫・仕入れの方針）</h3>
+<p>上の事実テーブルをAI（Antigravity CLIという道具。Anthropic社のClaude APIは使っていません）に渡し、
+シリーズごとに次の4つの方針のどれかを、数字を根拠にした理由つきで判断させます。</p>
+<div class="card"><h4><span class='badge b-攻め'>攻め</span> 攻め：需要が強く日本セラーが少ない → 積極的に新規開拓する</h4><p>実例: <b>Pokemon</b> <span class='badge b-A'>確度A</span></p><div class='reason'>直近7日で7件販売と好調で、eBay全体の出品数に対してJP出品比率が5.8%と圧倒的に低く積極的な新規出品余地があるためです。</div><p style='margin-top:6px'>メルカリ検索語の提案: ポケモン ピカチュウ、ポケモン フィギュア、ポケモン カード</p></div><div class="card"><h4><span class='badge b-補充'>補充</span> 補充：売れているのに在庫が少ない・切れている → 同じシリーズを仕入れて補充する</h4><p>実例: <b>Heart Cocktail</b> <span class='badge b-A'>確度A</span></p><div class='reason'>直近7日で1件販売されaccelが4.29と加速している一方、在庫は1点（消化目安30.0日）と薄くJP競合比率も1.3%と低いためです。</div><p style='margin-top:6px'>メルカリ検索語の提案: ハートカクテル、わたせせいぞう ハートカクテル、わたせせいぞう</p></div><div class="card"><h4><span class='badge b-様子見'>様子見</span> 様子見：動きが鈍い・材料が薄い → 今は動かず様子を見る（判断を保留するのではなく、これも立派な判断）</h4><p>実例: <b>Dragon Ball</b> <span class='badge b-B'>確度B</span></p><div class='reason'>直近7日で4件販売しaccelが1.56と好調ですが、在庫が478点と潤沢で消化日数が1303.5日あり補充の緊急性がないためです。</div><p style='margin-top:6px'>メルカリ検索語の提案: ドラゴンボール フィギュア、孫悟空 フィギュア、ドラゴンボール カードダス</p></div><div class="card"><h4><span class='badge b-縮小'>縮小</span> 縮小：売れ行きが落ちている・在庫が過多 → 縮小や値下げ、撤退を検討する</h4><p>実例: <b>Kinnikuman</b> <span class='badge b-A'>確度A</span></p><div class='reason'>accelが0.61と失速傾向にある中で在庫が191点と多く、JP競合比率も70.6%と過密状態なためです。</div><p style='margin-top:6px'>メルカリ検索語の提案: キン肉マン フィギュア、キン肉マン CCP、キン肉マン ソフビ</p></div>
+<p class="note-box">
+確度（A/B/C）は「AIの判断がどれくらい確からしいか」を表す目印です。A=データが十分で根拠が強い、
+B=中程度、C=材料が薄く推測混じり、という意味です。
+本日の実行では方針の内訳が {&quot;補充&quot;: 19, &quot;攻め&quot;: 9, &quot;様子見&quot;: 11, &quot;縮小&quot;: 26}、
+確度の内訳が {&quot;A&quot;: 31, &quot;B&quot;: 33, &quot;C&quot;: 1} でした（実データ）。<br>
+件数に上限は設けていません（「件数はAIが決める」という方針）。ただし、AIの応答がおかしくなって
+大量の行を書き込んでしまう事故を防ぐための歯止めとして、プログラム側で
+<span class="formula">100件</span>を超えた分は機械的に切り捨てます
+（AIには「上限はない」とだけ伝えていて、この数字自体はAIには見せていません）。
+AIに渡すデータも多すぎると判断が雑になるため、直近の売れ行き・在庫の多い順に上位
+<span class="formula">150シリーズ</span>まで抜粋して渡しています。
+eBayの需要指標を調べる回数にも1回の実行あたり<span class="formula">100回</span>という
+上限があります（シリーズ1件につき2回消費するので、約50シリーズ分）。
+</p>
+
+<h3>出品提案（新商品を出品する価値があるか）</h3>
+<p>候補は「新商品ウォッチ」が見つけた本日新規のトレカ・フィギュアの新商品/予約情報です。
+それぞれについて、eBayでの需要とあなたの既存出品との重複を調べ、AIに「出品する価値があるか」を
+判断させます。</p>
+<div class="card"><h4>すでに出品済みかどうかの見分け方</h4><p>候補ごとに、英語の検索語（<span class='formula'>en_query</span>）に含まれる単語と、あなたの現在の出品タイトルに含まれる単語をすべて比較します。候補側の単語が<b>100%</b>相手のタイトルに含まれ、かつ相手のタイトル側の単語も<b>50%以上</b>一致していたら「もう出品済み」と判定してAIには渡しません。それより緩い一致（60%以上）は「似ているかもしれない」という印だけ付けて、判定はAIに任せます。<br>本日の実例（実データ）：候補50件のうち、「もう出品済み」と機械的に除外されたのは<b>0件</b>、「似ているかもしれない」の印が付いたまま候補として残ったのは<b>17件</b>でした。</div>
+<div class="card"><h4>1位 <span class='badge b-A'>確度A</span> 初音ミク　ぬーどるストッパーフィギュアーヴィランver.ー</h4><div class='reason'>総出品数2,194件と圧倒的な需要があり、中央値27.49ドルで高回転な取引が期待できます。</div><div class='fact'>eBay出品数(total_all) <b>2,194件</b> ／ JP比率 <b>53.9%</b> ／ 最安値 <b>$9.22</b> ／ 中央値 <b>$27.49</b></div><p style='margin-top:6px'>メルカリ検索語の提案: 初音ミク ぬーどるストッパー ヴィラン</p></div><div class="card"><h4>2位 <span class='badge b-A'>確度A</span> -NARUTO 72 series- 71 VIBRATION STARS-UZUMAKI NARUTO-</h4><div class='reason'>総出品数1,338件と世界的な需要が非常に大きく、日本セラー比率も約41.0%と過度な競合を避けられます。</div><div class='fact'>eBay出品数(total_all) <b>1,338件</b> ／ JP比率 <b>41.0%</b> ／ 最安値 <b>$10.00</b> ／ 中央値 <b>$26.99</b></div><p style='margin-top:6px'>メルカリ検索語の提案: NARUTO VIBRATION STARS うずまきナルト</p></div>
+<div class='card'><h4>対象外にした実例</h4><p>本日の実行では <b>14件</b> を対象外にしました。AIが答えた理由（そのまま）：</p><div class='reason'>eBay出品数（total_all）が0件または極端に少ない（4件以下）ため海外需要が確認できない候補を除外しました。</div></div>
+<p class="note-box">
+件数に上限は設けていません。プログラム側の歯止めとして
+<span class="formula">100件</span>を超えた分は機械的に切り捨てます。
+1回の実行で見る候補の数は最大<span class="formula">50件</span>です。
+</p>
+</section>
+
+<section class="sec" id="feedback">
+<h2><span class="no">4</span>あなたの判断がどう戻るか</h2>
+<p>公開ページの各カードには「採用」のチェックボックスとメモ欄があります。
+ここにチェックやメモを入れると、その場で台帳（Googleスプレッドシート）に書き戻されます。</p>
+<p>翌朝、このツールが動き出す一番最初の段階（シリーズ分類のすぐ後）で、
+「今日より前の日付」でまだ取り込んでいない台帳の行（採用チェック・メモ）をAIに読ませ、
+<span class="formula">notes/判断ノート.md</span>という1つのファイルに次の3つに分けて書き足します。</p>
+<ul>
+<li><b>ユーザーからの方針（最優先）</b>：あなたが自由に書き込む欄。AIは絶対にここを書き換えません。</li>
+<li><b>現在の傾向（AIが毎朝更新）</b>：採用が続いている傾向・不採用が続いている傾向を、件数と日付を
+根拠にAIが要約します。直近の判断ほど重く見て、もし最近の判断が昔の傾向と矛盾していたら、
+平均化してごまかさずに「基準が変わったかもしれません」と件数・日付つきで書きます。</li>
+<li><b>日次の記録</b>：日付ごとの取り込み内容の記録。</li>
+</ul>
+<h3>現在の「現在の傾向」セクションの中身</h3><p class='warn'>今はまだ空です（"(まだ記録がありません)"）。台帳の行はすべて「本日」の日付のため、まだAIへの取り込み対象（今日より前の日付の行）がありません。台帳に翌日以降の日付の行ができ、あなたが採用チェック・メモを入れると、その次の朝から実際にここへ書き込まれていきます。</p>
+<p>この判断ノートの全文は、翌日以降の出品提案・在庫判断のAIへの指示文（プロンプト）に毎回そのまま
+埋め込まれます。つまり、あなたが今日入れた「採用」チェックやメモは、早ければ翌朝の判断に反映されます。</p>
+</section>
+
+<section class="sec" id="links">
+<h2><span class="no">5</span>リンクの意味</h2>
+<p>各カードには次の4種類のリンクボタンが付いています（どれもURLを組み立てているだけで、
+このツール自身が中身を取得したり操作したりすることはありません）。</p>
+<div class="tablewrap"><table><thead><tr><th>ボタン</th><th>何のためのリンクか</th></tr></thead><tbody>
+<tr><td><a class="linkbtn mercari" href="#">Mercari</a></td><td>仕入れ先（メルカリ）でその商品を探すための検索リンクです。</td></tr>
+<tr><td><a class="linkbtn" href="#">eBay出品中</a></td><td>eBayで今まさに出品されているライバルの価格・件数を見るための検索リンクです。</td></tr>
+<tr><td><a class="linkbtn" href="#">eBay売れた実績</a></td><td>同じ検索でSold &amp; Completed（実際に売れた履歴）だけに絞り込んだリンクです。いくらで実際に売れたかが分かります。</td></tr>
+<tr><td><a class="linkbtn" href="#">Seller Hubリサーチ</a></td><td>eBayのSeller Hub（出品者向け管理画面）のプロダクトリサーチ機能（通称Terapeak）に直接飛び、直近30日間の販売データを見るためのリンクです。</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="sec" id="limits">
+<h2><span class="no">6</span>限界と注意</h2>
+<ul>
+<li><b>メルカリの在庫状況は見ていません。</b>検索リンクを組み立てるだけで、実際に在庫があるか・値段がいくらかは
+あなたがリンク先を開いて確認する必要があります。</li>
+<li><b>60日より前の販売実績は見ていません。</b>集計対象は直近60日分のみです。</li>
+<li><b>eBayのカテゴリ別データは見ていません。</b>需要指標はキーワード検索（Browse API）の結果だけを使っています。</li>
+<li><b>AIの応答が空になることがあります。</b>使っているAI呼び出し（Antigravity CLI）は、実測でおよそ3回に1回
+空の応答を返すことがある不安定さがあります。3回まで自動で再試行しますが、それでも失敗した日はその
+ステップの提案が0件になり、Discordの通知に「⚠ 失敗」と表示されます（ツール自体が止まることはありません）。</li>
+<li><b>公開ページはURLを知っている人なら誰でも見られ、書き込めます。</b>パスワードによる保護はありません
+（この設計はあなたに説明済みで、承認を得ています）。</li>
+<li><b>eBayへの操作はすべて読み取り専用です。</b>出品中一覧の取得（GetMyeBaySelling）・売上の取得
+（GetSellerTransactions）・需要指標の取得（Browse API）のみを行い、出品・値下げ・出品終了などの
+書き込み操作は一切行いません。</li>
+<li><b>Claude API（Anthropicの有料API）は使っていません。</b>AIの判断はAntigravity CLIというサブスクリプション
+経由の道具で行っています。</li>
+</ul>
+</section>
+
+<section class="sec" id="glossary">
+<h2><span class="no">7</span>用語集</h2>
+<dl class="glossary">
+<dt>シリーズ分類</dt><dd>「ポケモン」「ワンピース」のように、商品名をまとめる単位です。</dd>
+<dt>確度（A/B/C）</dt><dd>AIの判断の確からしさ。A=根拠が強い、B=中程度、C=材料が薄い、という目印です。</dd>
+<dt>方針（補充/攻め/様子見/縮小）</dt><dd>在庫判断でAIが選ぶ4つの選択肢です。</dd>
+<dt>加速度（accel）</dt><dd>直近7日の売れるペースが、直近30日の平均ペースの何倍かを表す数字です。</dd>
+<dt>在庫消化日数</dt><dd>今のペースで売れ続けた場合、あと何日で在庫が尽きるかの目安です。</dd>
+<dt>JP比率</dt><dd>eBayでの全出品のうち、日本のセラーが占める割合です。低いほど競合が少ないと考えられます。</dd>
+<dt>中央値（median_usd）</dt><dd>価格を安い順に並べたときのちょうど真ん中の値段です。平均値より極端な値に強いです。</dd>
+<dt>hard_cap（歯止め）</dt><dd>AIの判断は件数無制限ですが、応答がおかしくなった時のための機械的な上限です。</dd>
+<dt>Browse API</dt><dd>eBayの検索結果を読み取るだけの仕組みです。書き込みは一切できません。</dd>
+<dt>GetMyeBaySelling / GetSellerTransactions</dt><dd>eBayの自分の出品中・売上履歴を読み取るための仕組みです（読み取り専用）。</dd>
+<dt>すでに出品済み判定</dt><dd>新商品の候補が、あなたの既存出品と単語レベルでどれだけ一致するかを調べる仕組みです。</dd>
+<dt>Seller Hubリサーチ（Terapeak）</dt><dd>eBayが公式に提供している、直近の販売データを見られる分析ツールです。</dd>
+<dt>判断ノート</dt><dd>あなたの採用チェック・メモの傾向をAIが毎朝書き足していく共通のメモです。</dd>
+<dt>dry-run / --send</dt><dd>dry-runは試し実行（台帳に書き込まない）、--sendは本番実行（実際に台帳へ書き込む）です。</dd>
+<dt>Antigravity CLI（agy）</dt><dd>このツールがAIの判断を得るために使っているサブスクリプション経由の道具です。</dd>
+</dl>
+</section>
+
+<footer>出品提案（自動生成ページ）。数字はすべて生成時点のstate配下の実データから計算しています。
+<br><a href="https://naokijodan.github.io/lp-a093b757/index.html">公開ページ（出品提案／在庫判断）</a>
+</footer>
+</div>
+</body>
+</html>
