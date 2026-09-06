@@ -137,7 +137,7 @@ footer{max-width:1280px; margin:20px auto 0; padding:0 16px; color:var(--muted);
 <header class="mast">
   <div class="mast-in">
     <div class="brand"><b>出品</b>提案</div>
-    <div class="today">最終更新: 2026-09-06（日）09:06 JST</div>
+    <div class="today">最終更新: 2026-09-06（日）09:12 JST</div>
     <div class="count">表示中 <b id="countNum">0</b> 件</div>
   </div>
 </header>
@@ -179,6 +179,7 @@ footer{max-width:1280px; margin:20px auto 0; padding:0 16px; color:var(--muted);
       <span class="chiprow" id="confChips"></span>
     </label>
     <label class="togglewrap" id="undecidedGrp"><input type="checkbox" id="undecidedOnly"> 未判断のみ</label>
+    <label class="togglewrap" id="adoptedGrp"><input type="checkbox" id="adoptedOnly"> 採用済みのみ (<span id="adoptedCount">0</span>)</label>
     <button class="fb-reset" id="resetBtn" type="button">条件クリア</button>
     <div class="fb-summary" id="fbSummary"></div>
   </div>
@@ -214,6 +215,7 @@ let actionFilter = new Set();
 let confFilter = new Set();
 let keyword = "";
 let undecidedOnly = false;
+let adoptedOnly = false;
 
 function esc(s){return (s==null?"":String(s)).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function fmtNum(v){ return (v===null||v===undefined||v==="") ? "?" : Number(v).toLocaleString(); }
@@ -453,9 +455,17 @@ function onAdoptToggle(checkbox){
   const item = findItem(view, date_, key);
   if(item) item.adopted = checkbox.checked;
   card.classList.toggle("adopted", checkbox.checked);
+  updateAdoptedCount();
   const domKey = `${date_}__${key}`;
   const memoInput = document.getElementById("memo_" + domKey);
   postWrite(view, date_, key, checkbox.checked, memoInput ? memoInput.value : (item ? item.memo : ""), domKey);
+}
+
+function updateAdoptedCount(){
+  const el = document.getElementById("adoptedCount");
+  if(!el) return;
+  const ds = currentView === "rivals" ? [] : currentDataset();
+  el.textContent = ds.filter(it => it.adopted).length;
 }
 
 function onMemoSave(btn){
@@ -479,6 +489,7 @@ function matchesFilters(it){
   if(currentView === "strategy" && actionFilter.size && !actionFilter.has(it.action)) return false;
   if(confFilter.size && !confFilter.has(it.confidence)) return false;
   if(undecidedOnly && it.adopted) return false;
+  if(adoptedOnly && !it.adopted) return false;
   if(keyword){
     const hay = currentView === "proposals"
       ? [it.name, it.maker, it.category, it.reason].join(" ")
@@ -525,6 +536,8 @@ function render(){
   document.getElementById("dateGrp").style.display = isRivals ? "none" : "flex";
   document.getElementById("confGrp").style.display = isRivals ? "none" : "flex";
   document.getElementById("undecidedGrp").style.display = isRivals ? "none" : "flex";
+  document.getElementById("adoptedGrp").style.display = isRivals ? "none" : "flex";
+  updateAdoptedCount();
 
   if(isRivals){
     renderRivals();
@@ -586,14 +599,24 @@ document.querySelectorAll("#dateChips button").forEach(btn => {
   btn.addEventListener("click", () => { dateRangeDays = Number(btn.dataset.date); renderDateChips(); render(); });
 });
 document.getElementById("kwInput").addEventListener("input", (e) => { keyword = e.target.value.trim().toLowerCase(); render(); });
-document.getElementById("undecidedOnly").addEventListener("change", (e) => { undecidedOnly = e.target.checked; render(); });
+document.getElementById("undecidedOnly").addEventListener("change", (e) => {
+  undecidedOnly = e.target.checked;
+  if(undecidedOnly){ adoptedOnly = false; document.getElementById("adoptedOnly").checked = false; }
+  render();
+});
+document.getElementById("adoptedOnly").addEventListener("change", (e) => {
+  adoptedOnly = e.target.checked;
+  if(adoptedOnly){ undecidedOnly = false; document.getElementById("undecidedOnly").checked = false; }
+  render();
+});
 document.querySelectorAll("#viewtabs button").forEach(btn => {
   btn.addEventListener("click", () => { currentView = btn.dataset.view; render(); });
 });
 document.getElementById("resetBtn").addEventListener("click", () => {
-  dateRangeDays = 7; actionFilter = new Set(); confFilter = new Set(); keyword = ""; undecidedOnly = false;
+  dateRangeDays = 7; actionFilter = new Set(); confFilter = new Set(); keyword = ""; undecidedOnly = false; adoptedOnly = false;
   document.getElementById("kwInput").value = "";
   document.getElementById("undecidedOnly").checked = false;
+  document.getElementById("adoptedOnly").checked = false;
   renderDateChips(); renderActionChips(); renderConfChips();
   render();
 });
@@ -603,7 +626,7 @@ function saveFilterState(){
   try{
     localStorage.setItem(filterStorageKey(), JSON.stringify({
       view: currentView, dateRangeDays, action: Array.from(actionFilter),
-      conf: Array.from(confFilter), keyword, undecidedOnly,
+      conf: Array.from(confFilter), keyword, undecidedOnly, adoptedOnly,
     }));
   }catch(e){}
 }
@@ -618,6 +641,8 @@ function loadFilterState(){
     if(Array.isArray(s.conf)) confFilter = new Set(s.conf);
     if(typeof s.keyword === "string") keyword = s.keyword;
     if(typeof s.undecidedOnly === "boolean") undecidedOnly = s.undecidedOnly;
+    if(typeof s.adoptedOnly === "boolean") adoptedOnly = s.adoptedOnly;
+    if(undecidedOnly && adoptedOnly) adoptedOnly = false;
   }catch(e){}
 }
 
@@ -626,6 +651,7 @@ document.getElementById("rivalRegisterBtn").addEventListener("click", onRivalReg
 loadFilterState();
 document.getElementById("kwInput").value = keyword;
 document.getElementById("undecidedOnly").checked = undecidedOnly;
+document.getElementById("adoptedOnly").checked = adoptedOnly;
 if(!CAN_WRITE){
   document.getElementById("gasWarn").hidden = false;
   document.getElementById("rivalSellerId").disabled = true;
