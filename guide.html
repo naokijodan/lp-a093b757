@@ -107,8 +107,8 @@ footer{max-width:920px; margin:20px auto 0; padding:0 16px 30px; color:var(--mut
 
 <section class="sec" id="flow">
 <h2><span class="no">1</span>一枚で分かる全体の流れ</h2>
-<p>毎朝、決まった順番で自動的に動きます。あなたがやることは、朝できたページを見て「採用」にチェックを
-入れることだけです。</p>
+<p>毎朝、決まった順番で自動的に動きます。あなたがやることは、朝できたページを見て「採用」「却下」を
+選ぶことだけです。</p>
 <div class="mermaid">
 flowchart TD
     W["07:00<br/>新商品ウォッチ<br/>(新商品を毎朝収集する別のツール)"] --> M["08:30<br/>このツール(出品提案)が動き出す"]
@@ -121,8 +121,8 @@ flowchart TD
     S3 --> S5["5. ページを作って公開"]
     S4 --> S5
     S5 --> D["Discordに通知が届く"]
-    D --> U["あなた<br/>ページを見て『採用』にチェック"]
-    U --> N["翌朝<br/>AIがチェック結果を読んで判断ノートを更新"]
+    D --> U["あなた<br/>ページを見て『採用』『却下』を選ぶ"]
+    U --> N["翌朝<br/>AIが採用/却下の結果を読んで判断ノートを更新"]
     N -.翌日の判断に反映される.-> S2
 
 </div>
@@ -138,21 +138,21 @@ flowchart TD
 <p>eBayから「今出品中の商品」と「最近売れた商品」を読み取るだけです（読み取り専用。出品や値下げなど
 書き込みは一切行いません）。</p>
 <div class="tablewrap"><table><tbody>
-<tr><th>今出品中の件数（実データ）</th><td><b>7,677件</b></td></tr>
-<tr><th>直近60日で売れた件数（実データ）</th><td><b>318件</b>（点数の合計は402点。まとめ売りだと1件で複数点になります）</td></tr>
-<tr><th>データ取得時刻</th><td>2026-09-05T03:24:08.542611+00:00</td></tr>
+<tr><th>今出品中の件数（実データ）</th><td><b>7,858件</b></td></tr>
+<tr><th>直近60日で売れた件数（実データ）</th><td><b>329件</b>（点数の合計は413点。まとめ売りだと1件で複数点になります）</td></tr>
+<tr><th>データ取得時刻</th><td>2026-09-06T23:31:50.279911+00:00</td></tr>
 </tbody></table></div>
 
 <h3>シリーズ分類</h3>
 <p>「ポケモン のフィギュア」「ポケモン のカード」のように商品名は毎回バラバラなので、
 似た商品名をまとめて「シリーズ」という単位に分類しています。</p>
 <div class="tablewrap"><table><tbody>
-<tr><th>分類済みの商品名（タイトル）の総数</th><td><b>7,774件</b></td></tr>
-<tr><th>できあがったシリーズの数</th><td><b>1,135個</b></td></tr>
+<tr><th>分類済みの商品名（タイトル）の総数</th><td><b>9,071件</b></td></tr>
+<tr><th>できあがったシリーズの数</th><td><b>1,330個</b></td></tr>
 </tbody></table></div>
 <h4 style="margin:10px 0 4px;font-size:12.5px;color:var(--muted)">件数が多い上位シリーズ（実データ）</h4>
 <div class="tablewrap"><table><thead><tr><th>シリーズ名</th><th class="num">商品名の件数</th></tr></thead>
-<tbody><tr><td>Pokemon</td><td class='num'>922</td></tr><tr><td>One Piece</td><td class='num'>534</td></tr><tr><td>Dragon Ball</td><td class='num'>478</td></tr><tr><td>Kinnikuman</td><td class='num'>199</td></tr><tr><td>Other</td><td class='num'>170</td></tr><tr><td>Sailor Moon</td><td class='num'>156</td></tr><tr><td>Marvel</td><td class='num'>123</td></tr><tr><td>Street Fighter</td><td class='num'>110</td></tr></tbody></table></div>
+<tbody><tr><td>Pokemon</td><td class='num'>1,014</td></tr><tr><td>One Piece</td><td class='num'>538</td></tr><tr><td>Dragon Ball</td><td class='num'>520</td></tr><tr><td>Other</td><td class='num'>231</td></tr><tr><td>Kinnikuman</td><td class='num'>210</td></tr><tr><td>Sailor Moon</td><td class='num'>156</td></tr><tr><td>Weekly Shonen Jump</td><td class='num'>129</td></tr><tr><td>Marvel</td><td class='num'>128</td></tr></tbody></table></div>
 
 <h3>eBayの需要指標</h3>
 <p>eBay内でそのキーワードがどれだけ出品されているか、日本のセラーがどれだけいるかを、
@@ -169,7 +169,7 @@ flowchart TD
 <li><b>在庫消化日数（stock_coverage_days）</b> = <span class="formula">在庫数 ÷ 直近30日の1日あたり販売ペース</span>。
 今のペースのまま売れ続けたとして、あと何日で在庫が尽きるかの目安です。</li>
 </ul>
-<div class="tablewrap"><table><thead><tr><th>シリーズ</th><th class='num'>売れ数7日</th><th class='num'>売れ数30日</th><th class='num'>売れ数60日<br>(件数)</th><th class='num'>点数60日</th><th class='num'>在庫数</th><th class='num'>加速度</th><th class='num'>在庫消化日数</th></tr></thead><tbody><tr><td>Palworld</td><td class='num'>0</td><td class='num'>1</td><td class='num'>42</td><td class='num'>106</td><td class='num'>1</td><td class='num'>0.00</td><td class='num'>30.0</td></tr><tr><td>Pokemon</td><td class='num'>6</td><td class='num'>28</td><td class='num'>49</td><td class='num'>49</td><td class='num'>911</td><td class='num'>0.92</td><td class='num'>976.1</td></tr><tr><td>Kinnikuman</td><td class='num'>0</td><td class='num'>7</td><td class='num'>12</td><td class='num'>12</td><td class='num'>191</td><td class='num'>0.00</td><td class='num'>818.7</td></tr><tr><td>Dragon Ball</td><td class='num'>3</td><td class='num'>11</td><td class='num'>15</td><td class='num'>15</td><td class='num'>478</td><td class='num'>1.17</td><td class='num'>1303.5</td></tr><tr><td>Heart Cocktail</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>4.29</td><td class='num'>30.0</td></tr></tbody></table></div>
+<div class="tablewrap"><table><thead><tr><th>シリーズ</th><th class='num'>売れ数7日</th><th class='num'>売れ数30日</th><th class='num'>売れ数60日<br>(件数)</th><th class='num'>点数60日</th><th class='num'>在庫数</th><th class='num'>加速度</th><th class='num'>在庫消化日数</th></tr></thead><tbody><tr><td>Palworld</td><td class='num'>0</td><td class='num'>0</td><td class='num'>42</td><td class='num'>106</td><td class='num'>1</td><td class='num'>算出不可</td><td class='num'>算出不可</td></tr><tr><td>Pokemon</td><td class='num'>7</td><td class='num'>29</td><td class='num'>50</td><td class='num'>50</td><td class='num'>999</td><td class='num'>1.03</td><td class='num'>1033.4</td></tr><tr><td>Kinnikuman</td><td class='num'>0</td><td class='num'>7</td><td class='num'>12</td><td class='num'>12</td><td class='num'>202</td><td class='num'>0.00</td><td class='num'>865.8</td></tr><tr><td>Dragon Ball</td><td class='num'>6</td><td class='num'>14</td><td class='num'>18</td><td class='num'>18</td><td class='num'>519</td><td class='num'>1.84</td><td class='num'>1112.1</td></tr><tr><td>Heart Cocktail</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>1</td><td class='num'>4.29</td><td class='num'>30.0</td></tr></tbody></table></div>
 <p class="note-box">
 実例の読み方：Palworldは在庫が1点しかなく、上の表の在庫消化日数が示す通りこのままのペースだと約1週間で
 売り切れる計算になります。Dragon Ballは在庫が478点と多く、在庫消化日数が1000日を超えており、
@@ -186,12 +186,12 @@ flowchart TD
 <h3>在庫判断（在庫・仕入れの方針）</h3>
 <p>上の事実テーブルをAI（Antigravity CLIという道具。Anthropic社のClaude APIは使っていません）に渡し、
 シリーズごとに次の4つの方針のどれかを、数字を根拠にした理由つきで判断させます。</p>
-<div class="card"><h4><span class='badge b-攻め'>攻め</span> 攻め：需要が強く日本セラーが少ない → 積極的に新規開拓する</h4><p>実例: <b>Pokemon</b> <span class='badge b-A'>確度A</span></p><div class='reason'>直近7日で7件販売と好調で、eBay全体の出品数に対してJP出品比率が5.8%と圧倒的に低く積極的な新規出品余地があるためです。</div><p style='margin-top:6px'>メルカリ検索語の提案: ポケモン ピカチュウ、ポケモン フィギュア、ポケモン カード</p></div><div class="card"><h4><span class='badge b-補充'>補充</span> 補充：売れているのに在庫が少ない・切れている → 同じシリーズを仕入れて補充する</h4><p>実例: <b>Heart Cocktail</b> <span class='badge b-A'>確度A</span></p><div class='reason'>直近7日で1件販売されaccelが4.29と加速している一方、在庫は1点（消化目安30.0日）と薄くJP競合比率も1.3%と低いためです。</div><p style='margin-top:6px'>メルカリ検索語の提案: ハートカクテル、わたせせいぞう ハートカクテル、わたせせいぞう</p></div><div class="card"><h4><span class='badge b-様子見'>様子見</span> 様子見：動きが鈍い・材料が薄い → 今は動かず様子を見る（判断を保留するのではなく、これも立派な判断）</h4><p>実例: <b>Dragon Ball</b> <span class='badge b-B'>確度B</span></p><div class='reason'>直近7日で4件販売しaccelが1.56と好調ですが、在庫が478点と潤沢で消化日数が1303.5日あり補充の緊急性がないためです。</div><p style='margin-top:6px'>メルカリ検索語の提案: ドラゴンボール フィギュア、孫悟空 フィギュア、ドラゴンボール カードダス</p></div><div class="card"><h4><span class='badge b-縮小'>縮小</span> 縮小：売れ行きが落ちている・在庫が過多 → 縮小や値下げ、撤退を検討する</h4><p>実例: <b>Kinnikuman</b> <span class='badge b-A'>確度A</span></p><div class='reason'>accelが0.61と失速傾向にある中で在庫が191点と多く、JP競合比率も70.6%と過密状態なためです。</div><p style='margin-top:6px'>メルカリ検索語の提案: キン肉マン フィギュア、キン肉マン CCP、キン肉マン ソフビ</p></div>
+<div class="card"><h4><span class='badge b-攻め'>攻め</span> 攻め：需要が強く日本セラーが少ない → 積極的に新規開拓する</h4><p>実例: <b>Pokemon</b> <span class='badge b-A'>確度A</span></p><div class='reason'>60日で50件・直近7日で7件販売と好回転を維持し、JP比率5.78%と圧倒的な海外需要があるため高単価・人気キャラを軸に新規開拓すべきです。</div><p style='margin-top:6px'>メルカリ検索語の提案: ポケモン ピカチュウ フィギュア、ポケモン モンコレ、ポケモン グッズ</p></div><div class="card"><h4><span class='badge b-補充'>補充</span> 補充：売れているのに在庫が少ない・切れている → 同じシリーズを仕入れて補充する</h4><p>実例: <b>Heart Cocktail</b> <span class='badge b-B'>確度B</span></p><div class='reason'>直近7日1件販売で在庫1件（カバレッジ30日）と逼迫し、JP比率1.28%と競合が極めて弱いため補充が急務です。</div><p style='margin-top:6px'>メルカリ検索語の提案: ハートカクテル、わたせせいぞう、ハートカクテル 本</p></div><div class="card"><h4><span class='badge b-様子見'>様子見</span> 様子見：動きが鈍い・材料が薄い → 今は動かず様子を見る（判断を保留するのではなく、これも立派な判断）</h4><p>実例: <b>Palworld</b> <span class='badge b-A'>確度A</span></p><div class='reason'>60日で42件販売も直近30日は0件（最終販売から31日経過）でブーム一服の兆候があり、残在庫1件のため動向観察が妥当です。</div><p style='margin-top:6px'>メルカリ検索語の提案: パルワールド、Palworld グッズ、パルワールド ぬいぐるみ</p></div><div class="card"><h4><span class='badge b-縮小'>縮小</span> 縮小：売れ行きが落ちている・在庫が過多 → 縮小や値下げ、撤退を検討する</h4><p>実例: <b>Kinnikuman</b> <span class='badge b-A'>確度A</span></p><div class='reason'>直近7日販売0件でaccel 0.0倍、JP比率70.64%と国内競合過密かつ在庫202件（カバレッジ865日）と重いため値下げ・縮小が妥当です。</div><p style='margin-top:6px'>メルカリ検索語の提案: キン肉マン フィギュア、CCP キン肉マン、スパイスシード キン肉マン</p></div>
 <p class="note-box">
 確度（A/B/C）は「AIの判断がどれくらい確からしいか」を表す目印です。A=データが十分で根拠が強い、
 B=中程度、C=材料が薄く推測混じり、という意味です。
-本日の実行では方針の内訳が {&quot;補充&quot;: 19, &quot;攻め&quot;: 9, &quot;様子見&quot;: 11, &quot;縮小&quot;: 26}、
-確度の内訳が {&quot;A&quot;: 31, &quot;B&quot;: 33, &quot;C&quot;: 1} でした（実データ）。<br>
+本日の実行では方針の内訳が {&quot;補充&quot;: 13, &quot;攻め&quot;: 11, &quot;縮小&quot;: 27, &quot;様子見&quot;: 7}、
+確度の内訳が {&quot;A&quot;: 13, &quot;B&quot;: 44, &quot;C&quot;: 1} でした（実データ）。<br>
 件数に上限は設けていません（「件数はAIが決める」という方針）。ただし、AIの応答がおかしくなって
 大量の行を書き込んでしまう事故を防ぐための歯止めとして、プログラム側で
 <span class="formula">100件</span>を超えた分は機械的に切り捨てます
@@ -213,17 +213,17 @@ eBayの需要指標を調べる回数にも1回の実行あたり<span class="fo
 <p>実例（実データ、直近3日以内に見つかった新商品、上限50件）：
 候補プール50件のカテゴリ内訳は次のとおりです。</p>
 <div class="tablewrap"><table><thead><tr><th>カテゴリ（候補プール）</th><th class="num">件数</th></tr></thead>
-<tbody><tr><td>ゲーム</td><td class='num'>6</td></tr><tr><td>ジャンプ</td><td class='num'>10</td></tr><tr><td>スポーツカード</td><td class='num'>1</td></tr><tr><td>トレカ</td><td class='num'>2</td></tr><tr><td>ニュース</td><td class='num'>10</td></tr><tr><td>フィギュア</td><td class='num'>10</td></tr><tr><td>文房具</td><td class='num'>1</td></tr><tr><td>漫画</td><td class='num'>10</td></tr></tbody></table></div>
+<tbody><tr><td>ゲーム</td><td class='num'>7</td></tr><tr><td>ジャンプ</td><td class='num'>6</td></tr><tr><td>スポーツカード</td><td class='num'>1</td></tr><tr><td>トレカ</td><td class='num'>4</td></tr><tr><td>ドール</td><td class='num'>2</td></tr><tr><td>ニュース</td><td class='num'>6</td></tr><tr><td>フィギュア</td><td class='num'>6</td></tr><tr><td>文房具</td><td class='num'>6</td></tr><tr><td>漫画</td><td class='num'>6</td></tr><tr><td>鉄道模型</td><td class='num'>6</td></tr></tbody></table></div>
 <p style="margin-top:10px">このうち実際にAIが「出品する価値がある」と選んだ内訳は次のとおりです。</p>
 <div class="tablewrap"><table><thead><tr><th>カテゴリ（採用された提案）</th><th class="num">件数</th></tr></thead>
-<tbody><tr><td>ゲーム</td><td class='num'>3</td></tr><tr><td>ジャンプ</td><td class='num'>6</td></tr><tr><td>スポーツカード</td><td class='num'>5</td></tr><tr><td>トレカ</td><td class='num'>3</td></tr><tr><td>ニュース</td><td class='num'>3</td></tr><tr><td>フィギュア</td><td class='num'>5</td></tr><tr><td>漫画</td><td class='num'>5</td></tr><tr><td>釣り道具</td><td class='num'>2</td></tr><tr><td>鉄道模型</td><td class='num'>2</td></tr></tbody></table></div>
+<tbody><tr><td>ゲーム</td><td class='num'>1</td></tr><tr><td>ジャンプ</td><td class='num'>4</td></tr><tr><td>ニュース</td><td class='num'>3</td></tr><tr><td>フィギュア</td><td class='num'>12</td></tr><tr><td>文房具</td><td class='num'>3</td></tr></tbody></table></div>
 
 
 <p>それぞれについて、eBayでの需要とあなたの既存出品との重複を調べ、AIに「出品する価値があるか」を
 判断させます。</p>
-<div class="card"><h4>すでに出品済みかどうかの見分け方</h4><p>候補ごとに、英語の検索語（<span class='formula'>en_query</span>）に含まれる単語と、あなたの現在の出品タイトルに含まれる単語をすべて比較します。候補側の単語が<b>100%</b>相手のタイトルに含まれ、かつ相手のタイトル側の単語も<b>50%以上</b>一致していたら「もう出品済み」と判定してAIには渡しません。それより緩い一致（60%以上）は「似ているかもしれない」という印だけ付けて、判定はAIに任せます。<br>本日の実例（実データ）：候補50件のうち、「もう出品済み」と機械的に除外されたのは<b>0件</b>、「似ているかもしれない」の印が付いたまま候補として残ったのは<b>14件</b>でした。</div>
-<div class="card"><h4>1位 <span class='badge b-A'>確度A</span> 『僕のヒーローアカデミア』アクスタ入りアクリルキーホルダー　ホークス　ＢＦ１</h4><div class='reason'>総出品数509件と高需要でありながら日本セラー比率が0.0%で競合がおらず、中央値24.0ドルで独占的な高利益が狙えます。</div><div class='fact'>eBay出品数(total_all) <b>509件</b> ／ JP比率 <b>0.0%</b> ／ 最安値 <b>$4.99</b> ／ 中央値 <b>$24.00</b></div><p style='margin-top:6px'>メルカリ検索語の提案: ヒロアカ ホークス BF1 アクリルキーホルダー</p></div><div class="card"><h4>2位 <span class='badge b-A'>確度A</span> 【製品情報】⚽ 2026-27 TOPPS FLAGSHIP PREMIER LEAGUE VALUE BOX</h4><div class='reason'>総出品数301件に対し日本セラー比率がわずか0.66%（2件）と極めて低く、中央値47.99ドルと安定した利益が見込めます。</div><div class='fact'>eBay出品数(total_all) <b>301件</b> ／ JP比率 <b>0.7%</b> ／ 最安値 <b>$4.95</b> ／ 中央値 <b>$47.99</b></div><p style='margin-top:6px'>メルカリ検索語の提案: Topps Premier League Value Box 2026-27</p></div>
-<div class='card'><h4>対象外にした実例</h4><p>本日の実行では <b>16件</b> を対象外にしました。AIが答えた理由（そのまま）：</p><div class='reason'>eBayでの総出品数（metrics.total_all）が0件または4件以下と極端に少なく、十分な市場需要が確認できないため対象外としました。</div></div>
+<div class="card"><h4>すでに出品済みかどうかの見分け方</h4><p>候補ごとに、英語の検索語（<span class='formula'>en_query</span>）に含まれる単語と、あなたの現在の出品タイトルに含まれる単語をすべて比較します。候補側の単語が<b>100%</b>相手のタイトルに含まれ、かつ相手のタイトル側の単語も<b>50%以上</b>一致していたら「もう出品済み」と判定してAIには渡しません。それより緩い一致（60%以上）は「似ているかもしれない」という印だけ付けて、判定はAIに任せます。<br>本日の実例（実データ）：候補50件のうち、「もう出品済み」と機械的に除外されたのは<b>0件</b>、「似ているかもしれない」の印が付いたまま候補として残ったのは<b>20件</b>でした。</div>
+<div class="card"><h4>1位 <span class='badge b-A'>確度A</span> DEATH NOTE　BiCute Dark Figureー弥海砂ー</h4><div class='reason'>出品数829件と海外需要が極めて大きく、中央値約$48で過去採用されたプライズフィギュアと親和性が高いため。</div><div class='fact'>eBay出品数(total_all) <b>829件</b> ／ JP比率 <b>72.4%</b> ／ 最安値 <b>$9.89</b> ／ 中央値 <b>$47.84</b></div><p style='margin-top:6px'>メルカリ検索語の提案: DEATH NOTE BiCute 弥海砂</p></div><div class="card"><h4>2位 <span class='badge b-A'>確度A</span> ジョジョの奇妙な冒険 黄金の風 Mometria ジョルノ・ジョバァーナ</h4><div class='reason'>出品数815件と需要が圧倒的で、中央値$62.50（約9,375円）の高単価かつ今月28日発売の注目フィギュアであるため。</div><div class='fact'>eBay出品数(total_all) <b>815件</b> ／ JP比率 <b>88.5%</b> ／ 最安値 <b>$16.99</b> ／ 中央値 <b>$62.50</b></div><p style='margin-top:6px'>メルカリ検索語の提案: ジョジョ Mometria ジョルノ</p></div>
+<div class='card'><h4>対象外にした実例</h4><p>本日の実行では <b>27件</b> を対象外にしました。AIが答えた理由（そのまま）：</p><div class='reason'>eBay出品数が0件または極小で需要が確認できないもの、仕入れ定価割れによる赤字商品、および商品単体ではないイベント・投票記事を除外しました。</div></div>
 <p class="note-box">
 件数に上限は設けていません。プログラム側の歯止めとして
 <span class="formula">100件</span>を超えた分は機械的に切り捨てます。
@@ -274,27 +274,32 @@ AIへの指示文にそのまま含まれます。</li>
 （「有効」はオフになっています）。<b>有効なセラーが1件も無い間は、Browse APIへの取得は一切行われません
 （スキップされます）。</b>実際に参考・ライバルにしたいセラーは、あなた自身が公開ページの「ライバル」タブから
 登録する必要があります。</p>
-<div class='fact'>テストのために一時的に自分自身のアカウントを有効にして動作確認した際の実測（実データ）：出品数 <b>1,000件</b> ／ 新規 <b>1件</b> ／ 消えた <b>1件</b> ／ 価格変動 <b>0件</b>（2026-09-05実行分。「消えた」は前回あった出品が今回のアクティブ出品に無いことのみを意味し、売却されたのか出品を取り消しただけなのかはBrowse APIから区別できないため、それ以上の断定はしていません）</div>
+<div class='fact'>テストのために一時的に自分自身のアカウントを有効にして動作確認した際の実測（実データ）：出品数 <b>990件</b> ／ 新規 <b>14件</b> ／ 消えた <b>19件</b> ／ 価格変動 <b>2件</b>（2026-09-07実行分。「消えた」は前回あった出品が今回のアクティブ出品に無いことのみを意味し、売却されたのか出品を取り消しただけなのかはBrowse APIから区別できないため、それ以上の断定はしていません）</div>
 
 </section>
 
 <section class="sec" id="feedback">
 <h2><span class="no">5</span>あなたの判断がどう戻るか</h2>
-<p>公開ページの各カードには「採用」のチェックボックスとメモ欄があります。
-ここにチェックやメモを入れると、その場で台帳（Googleスプレッドシート）に書き戻されます。</p>
+<p>公開ページの各カードには「採用」「却下」の2つのボタンとメモ欄があります。どちらか片方を押すと
+選ばれた状態になり、もう片方は自動的に解除されます（同じボタンをもう一度押すと未判断に戻せます）。
+ここでボタンを押したりメモを入れたりすると、その場で台帳（Googleスプレッドシート）に書き戻されます。
+「採用」は出品・仕入れすると決めたもの、「却下」は明示的に見送ると決めたものです。「却下」を押すときは
+理由をメモに書いておくと、その理由がAIに伝わります（メモが無い場合、AIは理由を「不明」として扱い、
+勝手に理由を推測することはありません）。</p>
 <p>翌朝、このツールが動き出す一番最初の段階（シリーズ分類のすぐ後）で、
-「今日より前の日付」でまだ取り込んでいない台帳の行（採用チェック・メモ）をAIに読ませ、
+「今日より前の日付」でまだ取り込んでいない台帳の行（採用・却下・メモ）をAIに読ませ、
 <span class="formula">notes/判断ノート.md</span>という1つのファイルに次の3つに分けて書き足します。</p>
 <ul>
 <li><b>ユーザーからの方針（最優先）</b>：あなたが自由に書き込む欄。AIは絶対にここを書き換えません。</li>
-<li><b>現在の傾向（AIが毎朝更新）</b>：採用が続いている傾向・不採用が続いている傾向を、件数と日付を
-根拠にAIが要約します。直近の判断ほど重く見て、もし最近の判断が昔の傾向と矛盾していたら、
-平均化してごまかさずに「基準が変わったかもしれません」と件数・日付つきで書きます。</li>
+<li><b>現在の傾向（AIが毎朝更新）</b>：採用が続いている傾向・却下が続いている傾向（理由はメモがあれば
+それを、無ければ「理由不明」として）・メモの内容が否定的な傾向を、件数と日付を根拠にAIが要約します。
+直近の判断ほど重く見て、もし最近の判断が昔の傾向と矛盾していたら、平均化してごまかさずに
+「基準が変わったかもしれません」と件数・日付つきで書きます。</li>
 <li><b>日次の記録</b>：日付ごとの取り込み内容の記録。</li>
 </ul>
-<h3>現在の「現在の傾向」セクションの中身</h3><p class='warn'>今はまだ空です（"(まだ記録がありません)"）。台帳の行はすべて「本日」の日付のため、まだAIへの取り込み対象（今日より前の日付の行）がありません。台帳に翌日以降の日付の行ができ、あなたが採用チェック・メモを入れると、その次の朝から実際にここへ書き込まれていきます。</p>
+<h3>現在の「現在の傾向」セクションの中身（そのまま抜粋）</h3><div class='note-box'>### 採用傾向<br>- **キャラクタープライズフィギュア（初音ミク系）の採用**<br>  - 根拠：2026-09-05の「出品提案」において、「初音ミク　ぬーどるストッパーフィギュアーヴィランver.ー」が1件採用されました（累計1件）。<br>  - 世界的な知名度・需要が高い「初音ミク」関連かつ、コンセプト性の高いプライズフィギュア（ぬーどるストッパーシリーズ）に対して前向きな判断がなされています。<br><br>### 不採用・見送り傾向<br>- 現時点で否定的なメモを含む不採用データは確認されていません（0件）。<br><br>### 蓄積状況と今後の視点<br>- 現在の判断データは2026-09-05の1件のみのため、今後は同系統のプライズフィギュアの採否基準や、他ジャンル（スケールフィギュア、他作品ホビー等）への判断傾向の広がりを注視していきます。</div>
 <p>この判断ノートの全文は、翌日以降の出品提案・在庫判断のAIへの指示文（プロンプト）に毎回そのまま
-埋め込まれます。つまり、あなたが今日入れた「採用」チェックやメモは、早ければ翌朝の判断に反映されます。</p>
+埋め込まれます。つまり、あなたが今日押した「採用」「却下」やメモは、早ければ翌朝の判断に反映されます。</p>
 </section>
 
 <section class="sec" id="links">
